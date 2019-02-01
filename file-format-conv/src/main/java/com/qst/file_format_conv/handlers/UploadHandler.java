@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.log4j.Logger;
+
 
 import com.qst.file_format_conv.parser.XlsToCsvService;
 
 @WebServlet("/upload")
 @MultipartConfig
 public class UploadHandler extends HttpServlet {
-	public static final Logger log = Logger.getLogger(UploadHandler.class.getName());
+	//public static final Logger log = Logger.getLogger(UploadHandler.class.getName());
 	private static final long serialVersionUID = 1L;
 	String errorString;
 	String errorFiles;
@@ -63,7 +63,7 @@ public class UploadHandler extends HttpServlet {
 						String newName = fileNameSplit[0] + ".csv";
 						XlsToCsvService.XlsToCsv(fileContent);
 					} else {
-						log.info("File Format  Not Supported.");
+				//		log.info("File Format  Not Supported.");
 						errorFiles += fileName + ", ";
 					}
 				} catch (Exception e) {

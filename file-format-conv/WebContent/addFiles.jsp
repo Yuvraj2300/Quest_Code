@@ -7,8 +7,8 @@
 </head>
 <body>
 	<form id="form_1" action="upload" method="post"
-		enctype="multipart/form-data">	
-		<label id="">
-		</form>
+		enctype="multipart/form-data">
+		<label id="lbl_1">Upload File</label> 
+		<input type="file" name="file" accept=".xls,.xlsx,.json"></form>
 </body>
 </html>

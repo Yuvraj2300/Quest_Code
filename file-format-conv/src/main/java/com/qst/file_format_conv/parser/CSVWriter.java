@@ -30,13 +30,13 @@ import java.util.TreeSet;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+
 
 public class CSVWriter {
     /**
      * The class logger
      */
-    private static final Logger LOGGER = Logger.getLogger(CSVWriter.class);
+ //   private static final Logger LOGGER = Logger.getLogger(CSVWriter.class);
 
     /**
      * Convert the given List of String keys-values as a CSV String.
@@ -79,7 +79,7 @@ public class CSVWriter {
         try {
             FileUtils.write(new File(fileName), csvString);
         } catch (IOException e) {
-            LOGGER.error("CSVWriter#writeToFile(csvString, fileName) IOException: ", e);
+    //        LOGGER.error("CSVWriter#writeToFile(csvString, fileName) IOException: ", e);
         }
     }
     
@@ -109,7 +109,7 @@ public class CSVWriter {
             	Files.write(Paths.get(fileName), csvString.getBytes("ISO8859_1"), StandardOpenOption.APPEND);
             }            
         } catch (IOException e) {
-            LOGGER.error("CSVWriter#writeLargeFile(flatJson, separator, fileName, headers) IOException: ", e);
+     //       LOGGER.error("CSVWriter#writeLargeFile(flatJson, separator, fileName, headers) IOException: ", e);
         }
     }    
 

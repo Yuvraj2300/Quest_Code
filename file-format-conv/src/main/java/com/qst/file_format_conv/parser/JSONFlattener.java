@@ -27,7 +27,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +44,7 @@ public class JSONFlattener {
     /**
      * The class Logger
      */
-    private static final Logger LOGGER = Logger.getLogger(JSONFlattener.class);
+//    private static final Logger LOGGER = Logger.getLogger(JSONFlattener.class);
 
     /**
      * Parse the JSON content at the given URI using the default
@@ -72,9 +72,9 @@ public class JSONFlattener {
             json = IOUtils.toString(uri, encoding);
             flatJson = parseJson(json);
         } catch (IOException e) {
-            LOGGER.error("JsonFlattener#ParseJson(uri, encoding) IOException: ", e);
+   //         LOGGER.error("JsonFlattener#ParseJson(uri, encoding) IOException: ", e);
         } catch (Exception ex) {
-            LOGGER.error("JsonFlattener#ParseJson(uri, encoding) Exception: ", ex);
+     //       LOGGER.error("JsonFlattener#ParseJson(uri, encoding) Exception: ", ex);
         }
 
         return flatJson;
@@ -104,9 +104,9 @@ public class JSONFlattener {
             json = FileUtils.readFileToString(file, encoding);
             flatJson = parseJson(json);
         } catch (IOException e) {
-            LOGGER.error("JsonFlattener#ParseJson(file, encoding) IOException: ", e);
+       //     LOGGER.error("JsonFlattener#ParseJson(file, encoding) IOException: ", e);
         } catch (Exception ex) {
-            LOGGER.error("JsonFlattener#ParseJson(file, encoding) Exception: ", ex);
+         //   LOGGER.error("JsonFlattener#ParseJson(file, encoding) Exception: ", ex);
         }
 
         return flatJson;
@@ -127,7 +127,7 @@ public class JSONFlattener {
             flatJson = new ArrayList<Map<String, String>>();
             flatJson.add(parse(jsonObject));
         } catch (JSONException je) {
-            LOGGER.info("Handle the JSON String as JSON Array");
+           // LOGGER.info("Handle the JSON String as JSON Array");
             flatJson = handleAsArray(json);
         }
 
@@ -182,7 +182,7 @@ public class JSONFlattener {
             flatJson = parse(jsonArray);
         } catch (Exception e) {
             // throw new Exception("Json might be malformed");
-            LOGGER.error("JSON might be malformed, Please verify that your JSON is valid");
+           // LOGGER.error("JSON might be malformed, Please verify that your JSON is valid");
         }
 
         return flatJson;
