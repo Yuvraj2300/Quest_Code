@@ -1,9 +1,10 @@
 package com.qst.file_format_conv.handlers;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedHashMap;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,14 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-
-
+import com.qst.file_format_conv.parser.JsonToCsvService;
 import com.qst.file_format_conv.parser.XlsToCsvService;
+import com.qst.file_format_conv.services.DBService;
 
 @WebServlet("/upload")
 @MultipartConfig
 public class UploadHandler extends HttpServlet {
-	//public static final Logger log = Logger.getLogger(UploadHandler.class.getName());
+	// public static final Logger log =
+	// Logger.getLogger(UploadHandler.class.getName());
 	private static final long serialVersionUID = 1L;
 	String errorString;
 	String errorFiles;
@@ -56,14 +58,31 @@ public class UploadHandler extends HttpServlet {
 				String fileName = getFileName(filePart);
 				InputStream fileContent = filePart.getInputStream();
 				String csvString = null;
+				String jsonString = null;
 
 				try {
 					if (fileName.contains(".xls") || fileName.contains(".xlsx")) {
 						String[] fileNameSplit = fileName.split("\\.");
+						String originalFileName = fileNameSplit[0];
+						String fileExt = fileNameSplit[1];
 						String newName = fileNameSplit[0] + ".csv";
-						XlsToCsvService.XlsToCsv(fileContent);
+						csvString = XlsToCsvService.XlsToCsv(fileContent);
+
+						fileContent = new ByteArrayInputStream(csvString.getBytes());
+
+						DBService.insertFileToDB(originalFileName, fileContent, fileExt);
+					} else if (fileName.contains(".json")) {
+
+						String[] fileNameSplit = fileName.split("\\.");
+						String originalFileName = fileNameSplit[0];
+						String fileExt = fileNameSplit[1];
+						String newName = fileNameSplit[0] + ".csv";
+						
+						jsonString	=	JsonToCsvService.convert(fileContent);
+						DBService.insertFileToDB(originalFileName, fileContent, fileExt);
+
 					} else {
-				//		log.info("File Format  Not Supported.");
+						// log.info("File Format Not Supported.");
 						errorFiles += fileName + ", ";
 					}
 				} catch (Exception e) {

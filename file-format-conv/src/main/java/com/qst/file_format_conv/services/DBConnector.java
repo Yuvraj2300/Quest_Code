@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnector {
-	public Connection getConnection(String userName, String password, String port, String host, String serviceName) {
+	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBNAMEEE", "root", "root");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "zxcvbnm,./");
 			return con;
 		} catch (Exception e) {
 			e.printStackTrace();

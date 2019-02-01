@@ -18,6 +18,7 @@ package com.qst.file_format_conv.parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -82,6 +83,16 @@ public class CSVWriter {
     //        LOGGER.error("CSVWriter#writeToFile(csvString, fileName) IOException: ", e);
         }
     }
+    
+  /*  //InputStream stream = new ByteArrayInputStream(exampleString.getBytes(StandardCharsets.UTF_8));
+    
+    public static void writeToFile(String csvString, InputStream fileName) {
+        try {
+            FileUtils.write(new File(fileName), csvString);
+        } catch (IOException e) {
+    //        LOGGER.error("CSVWriter#writeToFile(csvString, fileName) IOException: ", e);
+        }
+    }*/
     
     /**
      * Write the given CSV from a flat json to the given file.
