@@ -30,7 +30,7 @@ public class DownloadHandler extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("downldBtn") != null) {
+		if (request.getParameter("downButton") != null) {
 
 			DBConnector dbCon = new DBConnector();
 			Connection conn = dbCon.getConnection();
