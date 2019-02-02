@@ -1,10 +1,9 @@
 package com.qst.file_format_conv.handlers;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.apache.commons.io.IOUtils;
 
 import com.qst.file_format_conv.parser.JsonToCsvService;
 import com.qst.file_format_conv.parser.XlsToCsvService;
@@ -78,7 +79,11 @@ public class UploadHandler extends HttpServlet {
 						String fileExt = fileNameSplit[1];
 						String newName = fileNameSplit[0] + ".csv";
 						
-						jsonString	=	JsonToCsvService.convert(fileContent);
+						StringWriter writer = new StringWriter();
+						IOUtils.copy(fileContent, writer,"UTF-8");
+						String theString = writer.toString();
+						
+						jsonString	=	JsonToCsvService.convert(theString);
 						DBService.insertFileToDB(originalFileName, fileContent, fileExt);
 
 					} else {

@@ -13,5 +13,10 @@
 		<button id="upldBttn" style="margin-top: 0px" class="btn"
 					type="submit" value="Upload File">Upload</button>
 		</form>
+		
+		<form id="form_2"  action="download" method="get" enctype="multipart/form-data">
+			<button id="downldBtn" style="margin-top: 0px" class="btn"
+						type="submit" value="Upload File">Download</button>
+		</form>
 </body>
 </html>

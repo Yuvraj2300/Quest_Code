@@ -16,7 +16,7 @@ public class DBService {
 		Connection conn = dbCon.getConnection();
 		if (conn != null) {
 			PreparedStatement ps = conn
-					.prepareStatement("insert into audit_tbl (fileName,file_ext,status,file) values (?,?,?,?)");
+					.prepareStatement("insert into audit_tbl_1 (fileName,file_ext,status,file) values (?,?,?,?)");
 			ps.setString(2, fileName);
 			ps.setString(3, fileExt);
 			ps.setString(4, "uploaded");

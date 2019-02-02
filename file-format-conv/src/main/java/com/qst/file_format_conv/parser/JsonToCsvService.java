@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonToCsvService {
-	public static String convert(InputStream inp) throws IOException {
-		List<Map<String, String>> flatJson = JSONFlattener.parseJson(inp, "UTF-8");
+	public static String convert(String inp) throws IOException {
+		List<Map<String, String>> flatJson = JSONFlattener.parseJson(inp);
 		// Using the default separator ','
 		String csvData = CSVWriter.getCSV(flatJson);
 		return csvData;
